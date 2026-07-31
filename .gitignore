@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+
+# Local tooling config (Claude Code session settings, proxy token)
+.claude/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

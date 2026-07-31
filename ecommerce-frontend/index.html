@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veloura — The Art of Fine Living</title>
+  <meta name="description" content="Veloura — a curated collection of considered goods, delivered with white-glove care.">
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Veloura">
+  <meta property="og:title" content="Veloura — The Art of Fine Living">
+  <meta property="og:description" content="Veloura — a curated collection of considered goods, delivered with white-glove care.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Veloura — The Art of Fine Living">
+  <meta name="twitter:description" content="Veloura — a curated collection of considered goods, delivered with white-glove care.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop">
+
+  <!-- Favicon — gold Veloura monogram -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230B0B0B'/%3E%3Cpath d='M12 4.5l6.5 15h-3L12 10.5 8.5 19.5h-3l6.5-15z' fill='%23D4AF37'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announce">Complimentary White-Glove Delivery &nbsp;·&nbsp; Est. MMXXVI</div>
+
+  <!-- ─── Header ───────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo" onclick="navigateTo('home'); return false;">
+        <svg class="logo-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 1.5l10.5 10.5L12 22.5 1.5 12 12 1.5z"/>
+        </svg>
+        Veloura
+      </a>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search the collection..." oninput="searchProducts(this.value)">
+      </div>
+      <nav class="header-actions">
+        <button class="nav-btn admin-only" id="navAdmin" onclick="navigateTo('admin')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg>
+          Admin
+        </button>
+        <button class="nav-btn user-only" id="navOrders" onclick="navigateTo('orders')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+          Orders
+        </button>
+        <button class="cart-btn" onclick="navigateTo('cart')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.5H6.2L5 8z"/><path d="M9 10.5V6a3 3 0 0 1 6 0v4.5"/></svg>
+          Cart <span id="cartCount" class="cart-badge">0</span>
+        </button>
+        <button class="nav-btn" id="navLogin" onclick="openAuth()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.4-3.4 4.4-5 8-5s6.6 1.6 8 5"/></svg>
+          Sign In
+        </button>
+        <div class="user-chip" id="navUser">
+          <span class="user-name" id="userName"></span>
+          <button class="logout-btn" onclick="logout()">Sign Out</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── Main Content ─────────────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- HOME PAGE -->
+    <section id="homePage" class="page active">
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-copy reveal">
+            <p class="hero-eyebrow">The Veloura Collection</p>
+            <h1>Quiet luxury, <span class="hero-accent">curated</span> for you.</h1>
+            <p class="hero-sub">Hand-selected essentials and heirlooms from around the world — delivered to your door with care.</p>
+            <div class="hero-actions">
+              <button class="btn-gold" onclick="scrollToProducts()">Shop the Collection</button>
+              <button class="btn-outline" onclick="filterCategory('All')">Browse All Pieces</button>
+            </div>
+          </div>
+          <div class="hero-visual reveal" style="--reveal-delay:120ms">
+            <img class="hero-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1400&auto=format&fit=crop" alt="Editorial fashion campaign" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%221000%22%3E%3Crect fill=%22%23111111%22 width=%22800%22 height=%221000%22/%3E%3Ctext x=%22400%22 y=%22510%22 fill=%22%238a8a8a%22 font-family=%22sans-serif%22 font-size=%2226%22 letter-spacing=%226%22 text-anchor=%22middle%22%3EVELOURA%3C/text%3E%3C/svg%3E'">
+            <span class="hero-caption">FW26 · The Veloura Atelier</span>
+          </div>
+        </div>
+        <p class="hero-credits">Free White-Glove Shipping &nbsp;·&nbsp; 30-Day Returns &nbsp;·&nbsp; Lifetime Support</p>
+      </div>
+
+      <div class="values-bar">
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>
+          </div>
+          <div>
+            <div class="value-label">White-Glove Delivery</div>
+            <div class="value-sub">Complimentary on every order</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+          </div>
+          <div>
+            <div class="value-label">Curated Quality</div>
+            <div class="value-sub">Every piece vetted by hand</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5.2-3.4 9.3-8 11-4.6-1.7-8-5.8-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <div class="value-label">Secure Checkout</div>
+            <div class="value-sub">Payments fully encrypted</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M2 14v-2a2 2 0 0 1 2-2h.5M22 14v-2a2 2 0 0 0-2-2h-.5"/><path d="M20 13h2v3h-2zM4 13H2v3h2zM18.5 20a2 2 0 0 0 2-2H7a2 2 0 0 0 2 2h9.5z"/></svg>
+          </div>
+          <div>
+            <div class="value-label">24/7 Concierge</div>
+            <div class="value-sub">Always at your service</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCategory('All')">All</button>
+        <button class="filter-btn" onclick="filterCategory('Electronics')">Electronics</button>
+        <button class="filter-btn" onclick="filterCategory('Fashion')">Fashion</button>
+        <button class="filter-btn" onclick="filterCategory('Sports')">Sports</button>
+        <button class="filter-btn" onclick="filterCategory('Home')">Home</button>
+      </div>
+
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+
+    <!-- CART PAGE -->
+    <section id="cartPage" class="page">
+      <h2 class="page-title">Your Selection</h2>
+      <div id="cartItems" class="cart-items"></div>
+      <div id="cartSummary" class="cart-summary" style="display:none;">
+        <div class="cart-total">
+          <span>Subtotal</span>
+          <span id="cartTotal" class="total-amount">$0.00</span>
+        </div>
+        <div class="cart-buttons">
+          <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+          <button class="clear-btn" onclick="clearCart()">Clear Selection</button>
+        </div>
+      </div>
+      <div id="emptyCart" class="empty-state">
+        <div class="empty-icon" id="emptyCartIcon"></div>
+        <h3 class="empty-title">Your selection is empty</h3>
+        <p class="empty-sub">Explore the collection and discover something worth keeping.</p>
+        <div id="emptyCartSuggestions"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCT DETAIL PAGE -->
+    <section id="detailPage" class="page">
+      <div id="productDetail" class="product-detail"></div>
+    </section>
+
+    <!-- CHECKOUT PAGE -->
+    <section id="checkoutPage" class="page">
+      <h2 class="page-title">Checkout</h2>
+      <div class="checkout-wrap">
+        <button class="back-btn" onclick="navigateTo('cart')">Back to Cart</button>
+
+        <div class="checkout-layout">
+          <form id="checkoutForm" class="checkout-form" onsubmit="placeOrder(event)">
+            <h3 class="checkout-section-title">Shipping Address</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="addrName" required placeholder="John Doe">
+              </div>
+              <div class="form-group">
+                <label>Phone *</label>
+                <input type="tel" id="addrPhone" required placeholder="+1 555 123 4567">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Street Address *</label>
+              <input type="text" id="addrStreet" required placeholder="123 Market Street, Apt 4B">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" id="addrCity" required placeholder="San Francisco">
+              </div>
+              <div class="form-group">
+                <label>State *</label>
+                <input type="text" id="addrState" required placeholder="CA">
+              </div>
+              <div class="form-group">
+                <label>ZIP *</label>
+                <input type="text" id="addrZip" required placeholder="94103">
+              </div>
+            </div>
+
+            <h3 class="checkout-section-title">Payment</h3>
+
+            <!-- Mock card form (shown when Stripe is not configured) -->
+            <div id="mockPaymentSection">
+              <div class="form-group">
+                <label>Cardholder Name *</label>
+                <input type="text" id="payName" required placeholder="John Doe">
+              </div>
+              <div class="form-group">
+                <label>Card Number *</label>
+                <input type="text" id="payNumber" required maxlength="19" placeholder="4242 4242 4242 4242" oninput="formatCardNumber(this)">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Expiry (MM/YY) *</label>
+                  <input type="text" id="payExpiry" required maxlength="5" placeholder="08/28" oninput="formatExpiry(this)">
+                </div>
+                <div class="form-group">
+                  <label>CVV *</label>
+                  <input type="password" id="payCvv" required maxlength="4" placeholder="•••">
+                </div>
+              </div>
+            </div>
+
+            <!-- Stripe payment (shown when real Stripe is configured) -->
+            <div id="stripePaymentSection" class="stripe-note" style="display:none;">
+              <p>You'll be taken to <strong>Stripe's secure checkout</strong> to complete your payment. No card details are entered on this site.</p>
+            </div>
+
+            <button type="submit" class="btn-primary checkout-submit" id="placeOrderBtn">Place Order</button>
+            <p class="secure-note" id="secureNote">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Demo checkout — no real payment is processed.
+            </p>
+          </form>
+
+          <div class="checkout-summary" id="checkoutSummaryBox">
+            <h3 class="checkout-section-title">Order Summary</h3>
+            <div id="checkoutItems" class="checkout-items"></div>
+            <div class="checkout-total">
+              <span>Total</span>
+              <span id="checkoutTotal">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="orderSuccess" class="order-success" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- MY ORDERS PAGE -->
+    <section id="ordersPage" class="page">
+      <h2 class="page-title">Your Orders</h2>
+      <div id="ordersList" class="orders-list"></div>
+    </section>
+
+    <!-- ADMIN PAGE -->
+    <section id="adminPage" class="page">
+      <h2 class="page-title">Maison Atelier</h2>
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="overview" onclick="adminTab('overview')">Dashboard</button>
+        <button class="admin-tab" data-tab="orders" onclick="adminTab('orders')">Customer Orders</button>
+        <button class="admin-tab" data-tab="add" onclick="adminTab('add')">Add Product</button>
+      </div>
+
+      <!-- Dashboard tab: stats + charts -->
+      <div id="adminOverview" class="admin-tab-content active">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <span class="stat-label">Total Revenue</span>
+            <strong class="stat-value" id="statRevenue">$0.00</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Orders</span>
+            <strong class="stat-value" id="statOrders">0</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Units Sold</span>
+            <strong class="stat-value" id="statUnits">0</strong>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Products</span>
+            <strong class="stat-value" id="statProducts">0</strong>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card chart-wide">
+            <h3>Revenue — last 14 days</h3>
+            <div class="chart-canvas-wrap"><canvas id="chartRevenue"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h3>Top pieces by units sold</h3>
+            <div class="chart-canvas-wrap"><canvas id="chartTopProducts"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h3>Revenue by category</h3>
+            <div class="chart-canvas-wrap"><canvas id="chartCategory"></canvas></div>
+            <table class="chart-table" id="categoryTable"></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders tab: all customer orders -->
+      <div id="adminOrders" class="admin-tab-content">
+        <div id="adminOrdersList" class="orders-list"></div>
+      </div>
+
+      <!-- Add Product tab -->
+      <div id="adminAdd" class="admin-tab-content">
+        <form id="addProductForm" class="admin-form" onsubmit="addProduct(event)">
+          <div class="form-group">
+            <label>Product Name *</label>
+            <input type="text" id="prodName" required placeholder="e.g. Wireless Speaker">
+          </div>
+          <div class="form-group">
+            <label>Price ($) *</label>
+            <input type="number" id="prodPrice" step="0.01" min="0.01" required placeholder="49.99">
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="url" id="prodImage" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="prodCategory">
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Sports</option>
+              <option>Home</option>
+              <option>General</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="prodDesc" rows="3" placeholder="Product description..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Add Product</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Newsletter ────────────────────────────────────────────────────── -->
+  <section class="newsletter">
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title">Exclusive Access</h2>
+      <p class="newsletter-sub">Subscribe to receive curated collections, early releases and private offers.</p>
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input type="email" class="newsletter-email" id="newsletterEmail" placeholder="Your email address" aria-label="Email address" required>
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note" id="newsletterNote">No noise. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo" onclick="navigateTo('home'); return false;">
+          <svg class="logo-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 1.5l10.5 10.5L12 22.5 1.5 12 12 1.5z"/>
+          </svg>
+          Veloura
+        </a>
+        <p class="footer-tagline">Veloura is a curated maison of considered goods — quiet luxury for the discerning, delivered with care.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Shop</h4>
+        <ul>
+          <li><a href="#" onclick="goShop('All'); return false;">All Pieces</a></li>
+          <li><a href="#" onclick="goShop('Electronics'); return false;">Electronics</a></li>
+          <li><a href="#" onclick="goShop('Fashion'); return false;">Fashion</a></li>
+          <li><a href="#" onclick="goShop('Sports'); return false;">Sports</a></li>
+          <li><a href="#" onclick="goShop('Home'); return false;">Home</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Maison</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">The Journal</a></li>
+          <li><a href="#">Ateliers</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Client Care</h4>
+        <ul>
+          <li><a href="#">Contact Concierge</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © MMXXVI <span class="gold">Veloura</span> · Crafted with care · Payments securely processed
+    </div>
+  </footer>
+
+  <!-- ─── Auth Modal ───────────────────────────────────────────────────── -->
+  <div id="authModal" class="modal-overlay" onclick="closeAuth(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeAuth()">✕</button>
+      <h2 id="authTitle">Welcome back</h2>
+      <p id="authSubtitle" class="modal-sub">Sign in to your Veloura account.</p>
+      <form id="authForm" onsubmit="handleAuth(event)">
+        <div class="form-group" id="nameGroup" style="display:none;">
+          <label>Full Name</label>
+          <input type="text" id="authName" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="authEmail" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="authPassword" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary auth-submit" id="authSubmit">Sign In</button>
+      </form>
+      <p class="auth-toggle">
+        <span id="authToggleText">Don't have an account?</span>
+        <button class="link-btn" id="authToggleBtn" onclick="toggleAuthMode()">Create one</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
