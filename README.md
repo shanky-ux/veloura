@@ -1,145 +1,172 @@
-# Veloura
+<p align="center">
+  <img src="./logo.svg" alt="Veloura — The Art of Fine Living" width="560">
+</p>
 
-A full-stack e-commerce storefront with authentication, a shopping cart, checkout (mock or real Stripe payments), order history, and an admin dashboard with sales analytics — built with a plain HTML/CSS/JS frontend and an Express backend.
+<h1 align="center">Veloura</h1>
 
-**Live demo:** _add your deployed link here_
+<p align="center">
+  <em>Quiet luxury, curated for you.</em><br>
+  A full-featured luxury e-commerce experience — <strong>Noir &amp; Gold</strong>, editorial, timeless.
+</p>
 
-![Node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/express-5-000000?logo=express&logoColor=white)
-![License](https://img.shields.io/badge/license-ISC-blue)
-
----
-
-## Features
-
-**Storefront**
-- Browse products with category filters and live search
-- Product detail views with ratings and reviews
-- Persistent cart (add, update quantity, remove)
-
-**Accounts**
-- Register / log in with JWT-based sessions
-- Passwords hashed with bcrypt
-- Two roles out of the box: `user` and `admin`
-
-**Checkout**
-- Real payments via Stripe Checkout when API keys are configured
-- Automatic fallback to a built-in mock checkout when no keys are set — great for local demos
-- Address collection and order confirmation
-
-**Orders**
-- Customers can view their own order history
-- Admins can view all orders across the store
-
-**Admin dashboard**
-- Add / remove products
-- Sales stats: total revenue, units sold, order count
-- Charts (via Chart.js): daily revenue trend, top-selling products, revenue by category
+<p align="center">
+  <a href="#features"><img src="https://img.shields.io/badge/Node.js-18%2B-D4AF37?style=flat&logo=nodedotjs&logoColor=white&labelColor=111111" alt="Node.js 18+"></a>
+  <a href="#features"><img src="https://img.shields.io/badge/Express-5-D4AF37?style=flat&logo=express&logoColor=white&labelColor=111111" alt="Express 5"></a>
+  <a href="#features"><img src="https://img.shields.io/badge/Stripe-Ready-D4AF37?style=flat&logo=stripe&logoColor=white&labelColor=111111" alt="Stripe Ready"></a>
+  <a href="#features"><img src="https://img.shields.io/badge/Chart.js-Analytics-D4AF37?style=flat&logo=chartdotjs&logoColor=white&labelColor=111111" alt="Chart.js Analytics"></a>
+  <a href="#features"><img src="https://img.shields.io/badge/Auth-JWT-D4AF37?style=flat&logo=jsonwebtokens&logoColor=white&labelColor=111111" alt="JWT Auth"></a>
+  <a href="#features"><img src="https://img.shields.io/badge/Stack-Vanilla%20JS-D4AF37?style=flat&logo=javascript&logoColor=white&labelColor=111111" alt="Vanilla JS"></a>
+</p>
 
 ---
 
-## Tech Stack
+**Veloura** is a complete, production-minded luxury storefront: a lightweight **Express** API serving a hand-crafted **vanilla frontend** — no build step, no framework overhead. It ships with a polished editorial design system, real payment support via Stripe (with a built-in mock fallback), JWT authentication, customer orders, and a full admin analytics dashboard.
 
-| Layer    | Tech |
-|----------|------|
-| Frontend | HTML, CSS, vanilla JavaScript, [Chart.js](https://www.chartjs.org/) |
-| Backend  | Node.js, [Express 5](https://expressjs.com/) |
-| Auth     | JWT (`jsonwebtoken`), password hashing (`bcryptjs`) |
-| Payments | [Stripe](https://stripe.com/) (optional; mock checkout otherwise) |
-| Data     | In-memory (no database — resets on server restart) |
+> Originally *OmniRoute*, rebranded as **Veloura**.
 
 ---
 
-## Getting Started
+## ✨ Features
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) v18 or later
+- **Luxury design system** — Noir &amp; Gold palette (`#0B0B0B` / `#111111` / `#D4AF37`), Manrope + Inter typography, 4:5 editorial product crops, micro-interactions (reveal-on-scroll, ripple, glass navbar, quick-add hover).
+- **Responsive storefront** — Home, product detail, cart, checkout, order history, admin. Every page mobile-ready.
+- **Live search & filtering** — by keyword and category chips.
+- **Cart** — session-based, quantity controls, subtotal, empty-state with suggested products.
+- **Checkout** — shipping + payment form, card formatting, or **Stripe Checkout** when keys are configured.
+- **Authentication** — register / login with **JWT** (7-day sessions), role-based admin access.
+- **Order history** — customers see their own orders; admins see everything.
+- **Admin dashboard** — revenue, orders, units sold, products, plus **Chart.js** visualizations (14-day revenue, top sellers, category share) with an accessible data table.
+- **Demo-friendly** — runs instantly with seeded products and accounts; no external setup required.
 
-### Installation
+## 🎨 Design system
+
+| Token | Value |
+|---|---|
+| Background | `#0B0B0B` |
+| Cards | `#111111` |
+| Text | `#FFFFFF` |
+| Secondary text | `#BEBEBE` |
+| Accent (gold) | `#D4AF37` |
+| Display type | Manrope (700–800) |
+| Body type | Inter (400–500) |
+
+Gold is used sparingly — only for what matters: prices, primary actions, active states, and the brand mark.
+
+## 🧱 Tech stack
+
+| Layer | Choice |
+|---|---|
+| Backend | Node.js · Express 5 · JSON Web Tokens · bcryptjs |
+| Payments | Stripe (optional) + built-in mock checkout |
+| Frontend | Vanilla HTML / CSS / JS (no framework, no build) |
+| Charts | Chart.js 4 |
+| Fonts | Manrope, Inter (Google Fonts) |
+
+## 🚀 Getting started
 
 ```bash
-git clone https://github.com/<your-username>/veloura.git
-cd veloura/ecommerce-backend
+# 1. Clone
+git clone https://github.com/shanky-ux/veloura.git
+cd veloura
+
+# 2. Install & run the backend
+cd ecommerce-backend
 npm install
+node server.js
 ```
 
-### Configuration
-
-Copy the example environment file and edit as needed:
-
-```bash
-cp .env.example .env
-```
-
-| Variable | Description | Required |
-|---|---|---|
-| `PORT` | Port the server listens on (default `3000`) | No |
-| `STRIPE_SECRET_KEY` | Stripe secret key — enables real payments | No |
-| `STRIPE_PUBLISHABLE_KEY` | Stripe publishable key | No |
-| `JWT_SECRET` | Secret used to sign auth tokens | Recommended for production |
-
-> Leave the Stripe keys blank to run entirely in **mock checkout mode** — no external account needed to try the app.
-
-### Run
-
-```bash
-npm start
-```
-
-The server starts at `http://localhost:3000` and serves both the API and the frontend.
+Then open **http://localhost:3000** — the server also serves the frontend, so no separate dev server is needed.
 
 ### Demo accounts
 
-| Role  | Email | Password |
-|-------|-------|----------|
+| Role | Email | Password |
+|---|---|---|
 | Admin | `admin@veloura.com` | `admin123` |
-| User  | `user@demo.com` | `user123` |
+| Customer | `user@demo.com` | `user123` |
 
----
+> Accounts are seeded fresh on every server start (in-memory store).
 
-## Project Structure
+## 💳 Stripe (optional)
+
+Veloura runs in **demo mode** by default — checkout is mocked and nothing is charged. To enable real payments, add keys in `ecommerce-backend/.env`:
+
+```dotenv
+PORT=3000
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+Other optional variables:
+
+| Var | Default | Purpose |
+|---|---|---|
+| `JWT_SECRET` | random fallback | Signs session tokens |
+| `BASE_URL` | `http://localhost:3000` | Redirect host for Stripe returns |
+
+## 📁 Project structure
 
 ```
 veloura/
-├── ecommerce-backend/
-│   ├── server.js          # Express app: auth, products, cart, checkout, orders, stats
+├── ecommerce-backend/          # Express API + static file server
+│   ├── server.js               # All routes, auth, checkout, stats
 │   ├── package.json
-│   └── .env                # Local config (not committed)
-└── ecommerce-frontend/
-    ├── index.html
-    ├── app.js               # SPA-style routing, rendering, API calls
-    └── style.css
+│   └── .env                    # Local config (not committed)
+├── ecommerce-frontend/         # Vanilla frontend
+│   ├── index.html              # Pages: home, cart, detail, checkout, orders, admin
+│   ├── style.css               # Noir & Gold design system
+│   └── app.js                  # UI logic, API calls, charts
+├── logo.svg                    # Brand mark used in this README
+└── .gitignore
 ```
 
+## 🔌 API reference
+
+All endpoints are prefixed with `/api`.
+
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| POST | `/auth/register` | — | Create an account `{name, email, password}` |
+| POST | `/auth/login` | — | Log in → `{token, user}` |
+| GET | `/auth/me` | 🔒 | Current user |
+| GET | `/products` | — | List products (`?category=`, `?search=`) |
+| GET | `/products/:id` | — | Product detail |
+| POST | `/products` | 🔒 Admin | Add a product |
+| DELETE | `/products/:id` | 🔒 Admin | Remove a product |
+| GET | `/cart` | — | Session cart |
+| POST | `/cart` | — | `{productId, quantity}` |
+| PUT | `/cart/:productId` | — | Update quantity |
+| DELETE | `/cart/:productId` | — | Remove item |
+| DELETE | `/cart` | — | Clear cart |
+| GET | `/config` | — | Server config / Stripe status |
+| POST | `/checkout` | 🔒 | Place order (mock) or start Stripe session |
+| GET | `/checkout/verify?session_id=` | 🔒 | Confirm a Stripe payment |
+| GET | `/orders` | 🔒 | Your orders (all orders for admins) |
+| GET | `/stats` | 🔒 Admin | Dashboard analytics |
+
+> Note: the cart is held in memory per running server — it resets on restart. Persist to a database for multi-instance production use.
+
+## 📊 Admin analytics
+
+Sign in with `admin@veloura.com` → **Admin** in the navbar. The dashboard includes:
+
+- **KPI cards** — total revenue, orders, units sold, products
+- **14-day revenue** bar chart
+- **Top sellers** by units
+- **Revenue by category** doughnut + data table
+
+## 🛠 Scripts
+
+| Command | Action |
+|---|---|
+| `node server.js` | Start the server on port 3000 |
+| `npm start` | Same (alias in `package.json`) |
+
+## 📄 License
+
+© 2026 Veloura. This is a demo project — no license file is included. Reach out before using commercially.
+
 ---
 
-## API Overview
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| POST | `/api/auth/register` | Create an account | — |
-| POST | `/api/auth/login` | Log in | — |
-| GET | `/api/auth/me` | Get current user | User |
-| GET | `/api/products` | List products (filter by `category`, `search`) | — |
-| GET | `/api/products/:id` | Get one product | — |
-| POST | `/api/products` | Create a product | Admin |
-| DELETE | `/api/products/:id` | Delete a product | Admin |
-| GET / POST | `/api/cart` | View / add to cart | — |
-| PUT / DELETE | `/api/cart/:productId` | Update / remove cart item | — |
-| GET | `/api/config` | Frontend payment mode (mock vs. Stripe) | — |
-| POST | `/api/checkout` | Start checkout (Stripe session or mock order) | User |
-| GET | `/api/checkout/verify` | Confirm a Stripe payment | User |
-| GET | `/api/orders` | List orders (own, or all for admins) | User |
-| GET | `/api/stats` | Sales analytics for the dashboard | Admin |
-
----
-
-## Notes
-
-- Data (products, users, cart, orders) is stored **in memory** and resets whenever the server restarts. Swap in a database for persistence.
-- Stripe integration uses [Checkout Sessions](https://stripe.com/docs/payments/checkout) in test mode — use [Stripe test cards](https://stripe.com/docs/testing) if you enable it.
-- Change `JWT_SECRET` before deploying anywhere public.
-
-## License
-
-ISC
+<p align="center">
+  <sub>Quiet luxury, curated for you — <strong>Veloura</strong>.</sub>
+</p>
