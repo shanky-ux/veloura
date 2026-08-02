@@ -103,7 +103,7 @@ Other optional variables:
 | `JWT_SECRET` | random fallback | Signs session tokens |
 | `BASE_URL` | `http://localhost:3000` | Redirect host for Stripe returns |
 
-## 📁 Project structure
+## 📁 Project structures
 
 ```
 veloura/
