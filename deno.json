@@ -1,0 +1,5 @@
+{
+  "lint": {
+    "exclude": ["ecommerce-frontend/app.js"]
+  }
+}
