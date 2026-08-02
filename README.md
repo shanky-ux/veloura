@@ -38,7 +38,7 @@
 - **Admin dashboard** — revenue, orders, units sold, products, plus **Chart.js** visualizations (14-day revenue, top sellers, category share) with an accessible data table.
 - **Demo-friendly** — runs instantly with seeded products and accounts; no external setup required.
 
-## 🎨 Design system
+## 🎨 Design systems
 
 | Token | Value |
 |---|---|
