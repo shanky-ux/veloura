@@ -2,7 +2,7 @@
 // Veloura — Luxury E-commerce Frontend Logic
 // ═══════════════════════════════════════════════════════════════════════════
 
-const API = 'http://localhost:3000/api';
+const API = '/api';
 let currentCategory = 'All';
 let auth = null;            // { token, user }
 let authMode = 'login';     // 'login' | 'register'
