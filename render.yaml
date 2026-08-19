@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: veloura
+    env: node
+    rootDir: ecommerce-backend
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: STRIPE_SECRET_KEY
+        # leave unset so it falls back to mock checkout
+      - key: STRIPE_PUBLISHABLE_KEY
+        # leave unset so it falls back to mock checkout
