@@ -86,15 +86,16 @@ function adminRequired(req, res, next) {
   });
 }
 
-// Seed demo accounts (admin + regular user)
-async function seed() {
-  const adminHash = await bcrypt.hash('admin123', 10);
-  const userHash = await bcrypt.hash('user123', 10);
+// Seed demo accounts (admin + regular user) synchronously for serverless & local startup
+function seedSync() {
+  const adminHash = bcrypt.hashSync('admin123', 10);
+  const userHash = bcrypt.hashSync('user123', 10);
   users = [
     { id: nextUserId++, name: 'Admin', email: 'admin@veloura.com', passwordHash: adminHash, role: 'admin' },
     { id: nextUserId++, name: 'Demo User', email: 'user@demo.com', passwordHash: userHash, role: 'user' },
   ];
 }
+seedSync();
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Auth Routes
@@ -444,7 +445,7 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, '..', 'ecommerce-frontend', 'index.html'));
 });
 
-seed().then(() => {
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`\n🚀  Server running at ${BASE_URL}\n`);
     console.log(`   💳  Stripe: ${stripeEnabled ? 'ENABLED (real payments)' : 'not configured — using mock checkout'}`);
@@ -452,4 +453,6 @@ seed().then(() => {
     console.log('   •  Admin  →  admin@veloura.com  /  admin123');
     console.log('   •  User   →  user@demo.com        /  user123\n');
   });
-});
+}
+
+module.exports = app;
